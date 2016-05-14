@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Media;
 
 namespace MyPomodoro
 {
@@ -21,16 +21,19 @@ namespace MyPomodoro
 
         int min, sec, ms = 0;
 
-        private void btnStart_Click(object sender, EventArgs e)
+        public void btnStart_Click(object sender, EventArgs e)
         {
             
                 timer1.Start();
+                SoundPlayer sp = new SoundPlayer(@"partyhorn.wav");
+                sp.Play();
+            
             
 
             
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public void timer1_Tick(object sender, EventArgs e)
         {
             lblDisplay.Text = min + ":" + sec + ":" + ms;
             ms++;
@@ -47,8 +50,9 @@ namespace MyPomodoro
             if (min == 25)
             {
                 timer1.Stop();
-
-                for (int i = 0; i < 20; i++)
+                SoundPlayer sp = new SoundPlayer(@"partyhorn.wav");
+                sp.Play();
+                for (int i = 0; i < 100; i++)
                 {
                     lblDisplay.Hide();
                     lblDisplay.Show();
