@@ -19,7 +19,9 @@ namespace MyPomodoro
 
         }
 
-        int min, sec, ms = 0;
+        int min = 24;
+        int sec = 59;
+        int ms = 9;
 
         public void btnStart_Click(object sender, EventArgs e)
         {
@@ -36,18 +38,18 @@ namespace MyPomodoro
         public void timer1_Tick(object sender, EventArgs e)
         {
             lblDisplay.Text = min + ":" + sec + ":" + ms;
-            ms++;
-            if (ms > 9)
+            ms--;
+            if (ms == 0)
             {
-                sec++;
-                ms = 0;
-                    if (sec > 59)
+                sec--;
+                ms = 9;
+                    if (sec == 0)
                     {
-                        min++;
-                        sec = 0;
+                        min--;
+                        sec = 59;
                     }
             }
-            if (min == 25)
+            if (min == 0 && sec == 0 && ms == 0)
             {
                 timer1.Stop();
                 SoundPlayer sp = new SoundPlayer(@"partyhorn.wav");
@@ -60,6 +62,15 @@ namespace MyPomodoro
             }
 
 
+        }
+
+        public void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            min = 24;
+            sec = 59;
+            ms = 9;
+            lblDisplay.Text = min + ":" + sec + ":" + ms;
         }
     }
 }
