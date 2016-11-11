@@ -12,9 +12,25 @@ namespace TriviaGame
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Welcome wlm = new Welcome();
+            
+            wlm.Show();
+            
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            this.Hide();
         }
     }
 }
